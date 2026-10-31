@@ -1,0 +1,128 @@
+table dim_date
+	lineageTag: 572571cd-7652-4d6e-b572-5427977c3fdb
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8a2a280e-276c-45ad-aa98-d2976c25bf4c
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: 70a3ceb4-4baf-4dd5-a28a-bab242933d9c
+			defaultHierarchy: LocalDateTable_2002dbce-45d1-4f34-9608-3020d8298586.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column month_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7fe9fe26-65ff-4073-b490-17ec13f9c2c8
+		summarizeBy: none
+		sourceColumn: month_start
+
+		variation Variation
+			isDefault
+			relationship: 289fbd4c-465f-4586-ba64-f3d8308cb019
+			defaultHierarchy: LocalDateTable_15c014e0-c7c7-43e1-8445-1f87bfc3e913.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: f833fe5e-804b-491e-aa4e-c5d910b81edc
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_num
+		dataType: int64
+		formatString: 0
+		lineageTag: b8a92b4e-d422-4d56-b084-0e9cf600d5d3
+		summarizeBy: sum
+		sourceColumn: month_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_label
+		dataType: string
+		lineageTag: 8dc9b344-0413-4433-9c93-2ef8d0d64019
+		summarizeBy: none
+		sourceColumn: month_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column year_month
+		dataType: string
+		lineageTag: 22ba834a-f41b-4069-8518-a2d64d04364c
+		summarizeBy: none
+		sourceColumn: year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter_label
+		dataType: string
+		lineageTag: 2db8d270-82e1-4105-88a8-d3bbe19e2fed
+		summarizeBy: none
+		sourceColumn: quarter_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column weekday
+		dataType: string
+		lineageTag: 7b706eef-0e40-4fdd-8632-7dcb18a44fa7
+		summarizeBy: none
+		sourceColumn: weekday
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekday
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a0963d70-142a-407b-9582-8c5df23e106b
+		summarizeBy: none
+		sourceColumn: is_weekday
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_month_end
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4253b858-db8a-4d91-b447-0e5a69adf9d4
+		summarizeBy: none
+		sourceColumn: is_month_end
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = m
+		mode: import
+		source =
+				// ==== dim_date ====
+				let
+				    Source = fnLoadCsv("dim_date.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"date", type date},
+				        {"month_start", type date},
+				        {"year", Int64.Type},
+				        {"month_num", Int64.Type},
+				        {"month_label", type text},
+				        {"year_month", type text},
+				        {"quarter_label", type text},
+				        {"weekday", type text},
+				        {"is_weekday", type logical},
+				        {"is_month_end", type logical}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

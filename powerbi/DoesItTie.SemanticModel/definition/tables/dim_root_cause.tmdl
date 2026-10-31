@@ -1,0 +1,133 @@
+table dim_root_cause
+	lineageTag: a88bcc14-760a-40f5-9acb-8ab4f52a1d55
+
+	column rc_id
+		dataType: string
+		lineageTag: c7f6e613-9f2a-4cb4-8a35-bb0545998d4d
+		summarizeBy: none
+		sourceColumn: rc_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 76826557-aea5-4cd2-8c48-ae897b518118
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: e3a66c22-94d8-4ef2-9158-e4338fccc4f9
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 87547985-28c1-4706-8161-67cd501fee29
+		summarizeBy: none
+		sourceColumn: from_date
+
+		variation Variation
+			isDefault
+			relationship: 801353cd-b2b9-40b0-9963-04b2a9d812b0
+			defaultHierarchy: LocalDateTable_36bc0676-5c8b-4b16-bb35-82af7cfe687e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column to_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6eb36666-9886-4b02-914b-67b2fe8fcd03
+		summarizeBy: none
+		sourceColumn: to_date
+
+		variation Variation
+			isDefault
+			relationship: 28813abd-024b-4955-95ec-6566bcfd3628
+			defaultHierarchy: LocalDateTable_e7b1cc03-7319-4d3b-84a7-d3bbee42a768.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column what_happened
+		dataType: string
+		lineageTag: 8abcb2c1-bb95-4a8b-b405-b48997e0f6ed
+		summarizeBy: none
+		sourceColumn: what_happened
+
+		annotation SummarizationSetBy = Automatic
+
+	column prevention
+		dataType: string
+		lineageTag: 6ee19e98-45e3-4b75-a8d2-e06e83ecd1b0
+		summarizeBy: none
+		sourceColumn: prevention
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: fdff66b3-2ba5-454c-96dd-a4bff3287a76
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column correction_memo
+		dataType: string
+		lineageTag: 39280619-480c-44ba-ae22-2f7d9200b229
+		summarizeBy: none
+		sourceColumn: correction_memo
+
+		annotation SummarizationSetBy = Automatic
+
+	column dr_account
+		dataType: string
+		lineageTag: 0076a12e-a0ef-4f3c-8b31-6aa838c6a662
+		summarizeBy: none
+		sourceColumn: dr_account
+
+		annotation SummarizationSetBy = Automatic
+
+	column cr_account
+		dataType: string
+		lineageTag: 39f43551-ae49-4df6-a303-9e0cb9305de4
+		summarizeBy: none
+		sourceColumn: cr_account
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_root_cause = m
+		mode: import
+		source =
+				// ==== dim_root_cause ====
+				let
+				    Source = fnLoadCsv("dim_root_cause.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"rc_id", type text},
+				        {"category", type text},
+				        {"title", type text},
+				        {"from_date", type date},
+				        {"to_date", type date},
+				        {"what_happened", type text},
+				        {"prevention", type text},
+				        {"status", type text},
+				        {"correction_memo", type text},
+				        {"dr_account", type text},
+				        {"cr_account", type text}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,46 @@
+table dim_recon_check
+	lineageTag: c859272e-8394-42d9-acdf-2086da66cbad
+
+	column check_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 116423bf-67ba-4679-9429-fd5d8a870590
+		summarizeBy: sum
+		sourceColumn: check_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column check_name
+		dataType: string
+		lineageTag: f54fd463-00e5-4400-ab18-4bb25466cd15
+		summarizeBy: none
+		sourceColumn: check_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column gl_account
+		dataType: string
+		lineageTag: de6efe0f-2533-4bfe-8ced-55168b5beb99
+		summarizeBy: none
+		sourceColumn: gl_account
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_recon_check = m
+		mode: import
+		source =
+				// ==== dim_recon_check ====
+				let
+				    Source = fnLoadCsv("dim_recon_check.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"check_order", Int64.Type},
+				        {"check_name", type text},
+				        {"gl_account", type text}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

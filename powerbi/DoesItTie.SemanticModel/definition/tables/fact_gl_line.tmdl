@@ -1,0 +1,111 @@
+table fact_gl_line
+	lineageTag: baed683d-a604-4d9c-ab92-7d2c81ff37d2
+
+	column posting_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3ffef9d7-f056-41ee-a748-64abe9ef54dc
+		summarizeBy: none
+		sourceColumn: posting_date
+
+		variation Variation
+			isDefault
+			relationship: 64dfa069-055a-4791-abc0-7c4b60951936
+			defaultHierarchy: LocalDateTable_827adbb7-1e65-4cfc-a862-addc3a37410f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column source
+		dataType: string
+		lineageTag: ae11e14e-7114-44bf-b45c-96ca740540da
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = Automatic
+
+	column doc_number
+		dataType: string
+		lineageTag: 37152065-1342-47b9-92aa-4386c19352f2
+		summarizeBy: none
+		sourceColumn: doc_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_id
+		dataType: string
+		lineageTag: e256dc2d-9ea1-484e-b9d6-fa54c4919303
+		summarizeBy: none
+		sourceColumn: source_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column line_index
+		dataType: int64
+		formatString: 0
+		lineageTag: 99c53efc-50a7-4890-ad38-7c4acbfbdf30
+		summarizeBy: sum
+		sourceColumn: line_index
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_id
+		dataType: string
+		lineageTag: db9ee344-bead-4817-8892-5a999858fe35
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column posting_type
+		dataType: string
+		lineageTag: 39864ff5-d308-4686-b71b-eb0e44d4d860
+		summarizeBy: none
+		sourceColumn: posting_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column signed_amount_usd
+		dataType: decimal
+		formatString: "£"#,0.###############;-"£"#,0.###############;"£"#,0.###############
+		lineageTag: c77c524d-a45a-4d61-aec7-a9c94432bd28
+		summarizeBy: sum
+		sourceColumn: signed_amount_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	column description
+		dataType: string
+		lineageTag: 4433ccdf-6ae6-4763-923b-ad53dd6e597c
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_gl_line = m
+		mode: import
+		source =
+				// ==== fact_gl_line ====
+				let
+				    Source = fnLoadCsv("fact_gl_line.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"posting_date", type date},
+				        {"source", type text},
+				        {"doc_number", type text},
+				        {"source_id", type text},
+				        {"line_index", Int64.Type},
+				        {"account_id", type text},
+				        {"posting_type", type text},
+				        {"signed_amount_usd", Currency.Type},
+				        {"description", type text}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

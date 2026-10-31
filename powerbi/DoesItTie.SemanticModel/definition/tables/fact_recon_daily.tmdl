@@ -1,0 +1,90 @@
+table fact_recon_daily
+	lineageTag: 14d8714c-e08f-4e01-a8cd-2db5bec66823
+
+	column txn_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 094ada8b-d70b-40f5-8823-d530d8132584
+		summarizeBy: none
+		sourceColumn: txn_date
+
+		variation Variation
+			isDefault
+			relationship: 80e17e49-b864-46a2-9956-24cb7f613dc9
+			defaultHierarchy: LocalDateTable_97a142c0-5d4d-4b9a-a5cc-e97aa493af25.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column check_name
+		dataType: string
+		lineageTag: bc4a124e-90d5-4bf5-a080-aabe4c12ab8e
+		summarizeBy: none
+		sourceColumn: check_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column stripe_usd
+		dataType: decimal
+		formatString: "£"#,0.###############;-"£"#,0.###############;"£"#,0.###############
+		lineageTag: 8cdb645e-a282-4833-ba22-f022ffa243fe
+		summarizeBy: sum
+		sourceColumn: stripe_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	column books_usd
+		dataType: decimal
+		formatString: "£"#,0.###############;-"£"#,0.###############;"£"#,0.###############
+		lineageTag: 055f11ff-c66f-40d9-8991-bc6ad8ce5b17
+		summarizeBy: sum
+		sourceColumn: books_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	column diff_usd
+		dataType: decimal
+		formatString: "£"#,0.###############;-"£"#,0.###############;"£"#,0.###############
+		lineageTag: 78fb84c0-5f71-48db-a944-87813ba039ed
+		summarizeBy: sum
+		sourceColumn: diff_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	column ties
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c7e2c0f4-b97a-42d1-9029-50c83f64fbae
+		summarizeBy: none
+		sourceColumn: ties
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_recon_daily = m
+		mode: import
+		source =
+				// ==== fact_recon_daily ====
+				let
+				    Source = fnLoadCsv("fact_recon_daily.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"txn_date", type date},
+				        {"check_name", type text},
+				        {"stripe_usd", Currency.Type},
+				        {"books_usd", Currency.Type},
+				        {"diff_usd", Currency.Type},
+				        {"ties", type logical}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

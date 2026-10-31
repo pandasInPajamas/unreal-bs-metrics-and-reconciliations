@@ -1,0 +1,124 @@
+table fact_arr_snapshot
+	lineageTag: 610c4b7c-9085-4020-baa5-802c1eb8e2f7
+
+	column snapshot_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ed93965f-9edd-42c7-815a-73ff82749526
+		summarizeBy: none
+		sourceColumn: snapshot_month
+
+		variation Variation
+			isDefault
+			relationship: c2fe8465-ca18-4df8-bbc1-7630fd873b36
+			defaultHierarchy: LocalDateTable_86c02a50-bce2-4b03-8cd9-c344c3b8dded.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column subscription_id
+		dataType: string
+		lineageTag: d738fbe1-e208-4385-a80c-1735b6ab2dfe
+		summarizeBy: none
+		sourceColumn: subscription_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 72c50a47-5336-4fc5-a89b-f21c4bbeba50
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column plan
+		dataType: string
+		lineageTag: 35d5bdea-352a-4706-852c-2a12f7c0ec75
+		summarizeBy: none
+		sourceColumn: plan
+
+		annotation SummarizationSetBy = Automatic
+
+	column billing_interval
+		dataType: string
+		lineageTag: 4c7888d2-dc00-49dd-9de6-b34cae0468f5
+		summarizeBy: none
+		sourceColumn: billing_interval
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		lineageTag: a9802871-083a-4666-8de5-c1b2ce7a9102
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column arr_local
+		dataType: double
+		lineageTag: a517a787-7013-4215-9320-94193439a019
+		summarizeBy: sum
+		sourceColumn: arr_local
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fx_rate_to_usd
+		dataType: double
+		lineageTag: 9737d17c-77b3-47b4-9902-2d9ab4231af8
+		summarizeBy: sum
+		sourceColumn: fx_rate_to_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column arr_usd
+		dataType: double
+		lineageTag: a93729f4-2a44-4ebe-a70a-e915f6e8fef6
+		summarizeBy: sum
+		sourceColumn: arr_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mrr_usd
+		dataType: double
+		lineageTag: e1b75694-7eb0-45d3-bd0e-fd39a10a96d4
+		summarizeBy: sum
+		sourceColumn: mrr_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_arr_snapshot = m
+		mode: import
+		source =
+				// ==== fact_arr_snapshot ====
+				let
+				    Source = fnLoadCsv("fact_arr_snapshot.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"snapshot_month", type date},
+				        {"subscription_id", type text},
+				        {"customer_id", type text},
+				        {"plan", type text},
+				        {"billing_interval", type text},
+				        {"currency", type text},
+				        {"arr_local", type number},
+				        {"fx_rate_to_usd", type number},
+				        {"arr_usd", type number},
+				        {"mrr_usd", type number}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

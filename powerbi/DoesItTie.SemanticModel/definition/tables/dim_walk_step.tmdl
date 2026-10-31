@@ -1,0 +1,57 @@
+table dim_walk_step
+	lineageTag: 3e655fd8-30f8-400a-b515-8a117a745fba
+
+	column step_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d07c4a8-e3be-43b4-aad0-cb9eaab4ac47
+		summarizeBy: none
+		sourceColumn: step_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column walk
+		dataType: int64
+		formatString: 0
+		lineageTag: 5f82bc20-fb7f-4bc3-bdff-b5e44fdae04b
+		summarizeBy: none
+		sourceColumn: walk
+
+		annotation SummarizationSetBy = Automatic
+
+	column step_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b08b1ad-b20b-40bc-a638-65984e09daca
+		summarizeBy: none
+		sourceColumn: step_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column step
+		dataType: string
+		lineageTag: dd3ca3a7-b81a-43b4-8766-440a4067e81e
+		summarizeBy: none
+		sourceColumn: step
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_walk_step = m
+		mode: import
+		source =
+				// ==== dim_walk_step ====
+				let
+				    Source = fnLoadCsv("dim_walk_step.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"step_key", Int64.Type},
+				        {"walk", Int64.Type},
+				        {"step_order", Int64.Type},
+				        {"step", type text}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

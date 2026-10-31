@@ -1,0 +1,36 @@
+table bridge_root_cause_check
+	lineageTag: 56f13fcd-6873-455f-8477-2ceac395221c
+
+	column rc_id
+		dataType: string
+		lineageTag: 18802dca-d4d4-4b54-8376-8b94e2d54b7e
+		summarizeBy: none
+		sourceColumn: rc_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column check_name
+		dataType: string
+		lineageTag: c006da40-1562-4f32-b3c0-d12ffe429d85
+		summarizeBy: none
+		sourceColumn: check_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bridge_root_cause_check = m
+		mode: import
+		source =
+				// ==== bridge_root_cause_check ====
+				let
+				    Source = fnLoadCsv("bridge_root_cause_check.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"rc_id", type text},
+				        {"check_name", type text}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

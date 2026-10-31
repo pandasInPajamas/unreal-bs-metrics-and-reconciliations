@@ -1,0 +1,128 @@
+table fact_walk_line
+	lineageTag: f0b64ff0-b6c9-48e7-864a-61760b5c1a1c
+
+	column month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 28307628-f136-4a8a-a3e3-a500e16127d6
+		summarizeBy: none
+		sourceColumn: month
+
+		variation Variation
+			isDefault
+			relationship: 518bd17e-f606-4e77-bd72-363e0bb930b1
+			defaultHierarchy: LocalDateTable_df08e896-4277-43ca-aa2a-7df42046a010.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column step_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 12820c74-986d-4d8b-b283-e06470bc7f22
+		summarizeBy: none
+		sourceColumn: step_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column gl_account
+		dataType: string
+		lineageTag: 0ad28217-9424-428b-adaf-c80ff80f1173
+		summarizeBy: none
+		sourceColumn: gl_account
+
+		annotation SummarizationSetBy = Automatic
+
+	column recon_check
+		dataType: string
+		lineageTag: dc2d8d10-5fea-43d2-95c0-584556ac7d49
+		summarizeBy: none
+		sourceColumn: recon_check
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_type
+		dataType: string
+		lineageTag: 4a07be1c-8d5d-41ba-9e6a-331c286f79fa
+		summarizeBy: none
+		sourceColumn: row_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 1fbee6f6-be73-47d4-9252-094d593f8d09
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_id
+		dataType: string
+		lineageTag: 16240823-590e-418f-8617-c0a69910d61f
+		summarizeBy: none
+		sourceColumn: source_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_usd
+		dataType: double
+		lineageTag: 61946d7f-3c4b-4033-b402-4757a9915ea5
+		summarizeBy: sum
+		sourceColumn: amount_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column reason
+		dataType: string
+		lineageTag: 10d8e051-360b-458f-b53b-dd3d67060a33
+		summarizeBy: none
+		sourceColumn: reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column calculation
+		dataType: string
+		lineageTag: 045ae619-89c7-47bf-b8c6-2f43e0e03ae1
+		summarizeBy: none
+		sourceColumn: calculation
+
+		annotation SummarizationSetBy = Automatic
+
+	column rc_id
+		dataType: string
+		lineageTag: e0757994-3001-4be1-b91a-56b6cbd40a46
+		summarizeBy: none
+		sourceColumn: rc_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_walk_line = m
+		mode: import
+		source =
+				// ==== fact_walk_line ====
+				let
+				    Source = fnLoadCsv("fact_walk_line.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"month", type date},
+				        {"step_key", Int64.Type},
+				        {"gl_account", type text},
+				        {"recon_check", type text},
+				        {"row_type", type text},
+				        {"customer_id", type text},
+				        {"source_id", type text},
+				        {"amount_usd", type number},
+				        {"reason", type text},
+				        {"calculation", type text},
+				        {"rc_id", type text}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

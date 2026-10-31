@@ -1,0 +1,98 @@
+table fact_recon_exception
+	lineageTag: 60b16f2b-26e8-464a-9b8d-d61ecb5d5217
+
+	column rc_id
+		dataType: string
+		lineageTag: 747d3e6a-a726-43ac-a5df-7d402c4bb0f3
+		summarizeBy: none
+		sourceColumn: rc_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column txn_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 23b09ef4-0d8d-4ae6-b4f2-d3414d5da56a
+		summarizeBy: none
+		sourceColumn: txn_date
+
+		variation Variation
+			isDefault
+			relationship: 75a11a6d-b937-4e46-85f1-7678d0baa074
+			defaultHierarchy: LocalDateTable_0049ff95-95ed-4903-b674-e6d71944b820.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column check_name
+		dataType: string
+		lineageTag: 53b86878-3ce8-422c-9b6c-004c4a87f85f
+		summarizeBy: none
+		sourceColumn: check_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column stripe_usd
+		dataType: decimal
+		formatString: "£"#,0.###############;-"£"#,0.###############;"£"#,0.###############
+		lineageTag: 2f930620-95f2-4918-91b5-f3f5a603e057
+		summarizeBy: sum
+		sourceColumn: stripe_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	column books_usd
+		dataType: decimal
+		formatString: "£"#,0.###############;-"£"#,0.###############;"£"#,0.###############
+		lineageTag: c16d20f7-cbca-46a4-8f63-9e93e6a5d17b
+		summarizeBy: sum
+		sourceColumn: books_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	column diff_usd
+		dataType: decimal
+		formatString: "£"#,0.###############;-"£"#,0.###############;"£"#,0.###############
+		lineageTag: 135c635a-619e-4e6c-a83b-946a25248af5
+		summarizeBy: sum
+		sourceColumn: diff_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	column evidence
+		dataType: string
+		lineageTag: 40a1030f-0287-4b03-b607-d1d8adcffb94
+		summarizeBy: none
+		sourceColumn: evidence
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_recon_exception = m
+		mode: import
+		source =
+				// ==== fact_recon_exception ====
+				let
+				    Source = fnLoadCsv("fact_recon_exception.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"rc_id", type text},
+				        {"txn_date", type date},
+				        {"check_name", type text},
+				        {"stripe_usd", Currency.Type},
+				        {"books_usd", Currency.Type},
+				        {"diff_usd", Currency.Type},
+				        {"evidence", type text}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

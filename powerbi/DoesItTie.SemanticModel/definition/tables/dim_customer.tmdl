@@ -1,0 +1,107 @@
+table dim_customer
+	lineageTag: a4af951d-a6e4-4a1d-bc0f-ca54d13594ce
+
+	column customer_id
+		dataType: string
+		lineageTag: 012b3fd0-d2f9-4fe4-b255-18362e48dc2e
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_name
+		dataType: string
+		lineageTag: 19bfbbb8-18d4-43ca-95d0-db917aa7c594
+		summarizeBy: none
+		sourceColumn: customer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		lineageTag: 06d5f32e-0fd8-4d76-a2a3-8d16ccbaf6c9
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column market
+		dataType: string
+		lineageTag: 64661d0d-f769-42bb-b666-0527d7553e78
+		summarizeBy: none
+		sourceColumn: market
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 866ba913-c7a0-465e-86e5-e571f6b63cc8
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ebc6818c-8824-4f12-b3b5-fb432b0d4cf4
+		summarizeBy: none
+		sourceColumn: created_date
+
+		variation Variation
+			isDefault
+			relationship: d7d77f22-d128-4861-a9e4-416065c8436a
+			defaultHierarchy: LocalDateTable_b32b68ab-a6d7-40c9-81dd-33149b3b07dc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column first_arr_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8adb688f-d7b1-41d6-b8fc-7633ca605b81
+		summarizeBy: none
+		sourceColumn: first_arr_month
+
+		variation Variation
+			isDefault
+			relationship: dd285b7b-6f38-412f-99f4-44b330703ea1
+			defaultHierarchy: LocalDateTable_9e7a995a-58fe-46c2-a8d9-f5cc68e05b6e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column is_story_customer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c9c66202-9a7a-4dc6-a4d9-08ed772133f3
+		summarizeBy: none
+		sourceColumn: is_story_customer
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_customer = m
+		mode: import
+		source =
+				// ==== dim_customer ====
+				let
+				    Source = fnLoadCsv("dim_customer.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"customer_id", type text},
+				        {"customer_name", type text},
+				        {"currency", type text},
+				        {"market", type text},
+				        {"country", type text},
+				        {"created_date", type date},
+				        {"first_arr_month", type date},
+				        {"is_story_customer", type logical}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

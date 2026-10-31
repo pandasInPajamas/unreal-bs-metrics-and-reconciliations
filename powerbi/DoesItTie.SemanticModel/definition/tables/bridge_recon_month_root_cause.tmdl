@@ -1,0 +1,62 @@
+table bridge_recon_month_root_cause
+	lineageTag: 47b0bf48-1a10-4a0d-b44c-4b2740b75d36
+
+	column month_check_key
+		dataType: string
+		lineageTag: b08b2e02-d4d9-455c-8e58-0a6295d80b57
+		summarizeBy: none
+		sourceColumn: month_check_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9f8443ae-a9a0-4e90-8b77-16fd041e14dd
+		summarizeBy: none
+		sourceColumn: month
+
+		variation Variation
+			isDefault
+			relationship: 8b2fd45f-8bbf-47d8-b22d-fd1bfdf7cd4a
+			defaultHierarchy: LocalDateTable_4d0f6dce-23a4-4599-9949-a01774ad0f26.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column check_name
+		dataType: string
+		lineageTag: fbcc2ff5-9ce6-42fa-a2e5-57f3d010730d
+		summarizeBy: none
+		sourceColumn: check_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column rc_id
+		dataType: string
+		lineageTag: e280fa74-8b95-4929-aa49-8d04c42ac9c4
+		summarizeBy: none
+		sourceColumn: rc_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bridge_recon_month_root_cause = m
+		mode: import
+		source =
+				// ==== bridge_recon_month_root_cause ====
+				let
+				    Source = fnLoadCsv("bridge_recon_month_root_cause.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"month_check_key", type text},
+				        {"month", type date},
+				        {"check_name", type text},
+				        {"rc_id", type text}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

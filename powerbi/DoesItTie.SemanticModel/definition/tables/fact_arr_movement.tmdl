@@ -1,0 +1,97 @@
+table fact_arr_movement
+	lineageTag: 8db6b6ae-1166-4e40-ab64-ee1bf33dc5a0
+
+	column snapshot_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6c64063c-93aa-46d6-a80f-0aed99ae63b5
+		summarizeBy: none
+		sourceColumn: snapshot_month
+
+		variation Variation
+			isDefault
+			relationship: 20243846-3836-45b8-b75d-7506fe8f2173
+			defaultHierarchy: LocalDateTable_7caa773f-696e-4c77-9a2d-901965f69f1d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column customer_id
+		dataType: string
+		lineageTag: 01d53550-ec4c-48d0-842f-201274541b32
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column movement_type
+		dataType: string
+		lineageTag: 3516790f-fd1f-4749-a1c0-5a6d6942fe39
+		summarizeBy: none
+		sourceColumn: movement_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column opening_arr_usd
+		dataType: double
+		lineageTag: ebc52147-1ac9-4f97-b51c-b73ca788b5d8
+		summarizeBy: sum
+		sourceColumn: opening_arr_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column movement_usd
+		dataType: double
+		lineageTag: 752dbd82-44ab-4c0c-999c-250dfbe91e15
+		summarizeBy: sum
+		sourceColumn: movement_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fx_usd
+		dataType: double
+		lineageTag: a6d217ca-e117-448c-863a-4a52ca5c77a8
+		summarizeBy: sum
+		sourceColumn: fx_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column closing_arr_usd
+		dataType: double
+		lineageTag: 712f00dc-ad26-4ed2-9c73-4812d0c28178
+		summarizeBy: sum
+		sourceColumn: closing_arr_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_arr_movement = m
+		mode: import
+		source =
+				// ==== fact_arr_movement ====
+				let
+				    Source = fnLoadCsv("fact_arr_movement.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"snapshot_month", type date},
+				        {"customer_id", type text},
+				        {"movement_type", type text},
+				        {"opening_arr_usd", type number},
+				        {"movement_usd", type number},
+				        {"fx_usd", type number},
+				        {"closing_arr_usd", type number}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

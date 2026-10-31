@@ -1,0 +1,83 @@
+table fact_recon_monthly
+	lineageTag: 8167e8e2-eceb-4df0-be32-468844909241
+
+	column month_check_key
+		dataType: string
+		lineageTag: a7284783-6350-41b0-b031-2ab27b2630c6
+		summarizeBy: none
+		sourceColumn: month_check_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1b765361-af81-4f0b-82d1-fc2852ad3ce1
+		summarizeBy: none
+		sourceColumn: month
+
+		variation Variation
+			isDefault
+			relationship: e40a3be3-95c6-4884-a589-f433610ddd89
+			defaultHierarchy: LocalDateTable_9b3923d7-223c-40b3-99f6-a3ed732da703.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column check_name
+		dataType: string
+		lineageTag: 7c7f3fec-d70f-4250-ab60-a9eb32043a2e
+		summarizeBy: none
+		sourceColumn: check_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column diff_usd
+		dataType: decimal
+		formatString: "£"#,0.###############;-"£"#,0.###############;"£"#,0.###############
+		lineageTag: f409dd08-af60-4e3a-b4bb-ca07f65d8f84
+		summarizeBy: sum
+		sourceColumn: diff_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	column status
+		dataType: string
+		lineageTag: c9f02240-a2fc-4c86-a9ec-77a5b7ed6d34
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column rc_ids
+		dataType: string
+		lineageTag: b9a56f0a-6a54-4c4d-a1ea-1ec8e8d084a2
+		summarizeBy: none
+		sourceColumn: rc_ids
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_recon_monthly = m
+		mode: import
+		source =
+				// ==== fact_recon_monthly ====
+				let
+				    Source = fnLoadCsv("fact_recon_monthly.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"month_check_key", type text},
+				        {"month", type date},
+				        {"check_name", type text},
+				        {"diff_usd", Currency.Type},
+				        {"status", type text},
+				        {"rc_ids", type text}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

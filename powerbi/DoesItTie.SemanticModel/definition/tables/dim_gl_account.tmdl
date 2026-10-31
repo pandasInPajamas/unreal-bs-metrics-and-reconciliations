@@ -1,0 +1,109 @@
+table dim_gl_account
+	lineageTag: 0a9fae01-27b3-4afe-9a13-fb69860a0372
+
+	column account_id
+		dataType: string
+		lineageTag: 2ed516a0-9def-42d8-8908-fe1e026d4f11
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_number
+		dataType: string
+		lineageTag: 0947a86f-f600-46a4-9cf1-79a56ce8a47a
+		summarizeBy: none
+		sourceColumn: account_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_name
+		dataType: string
+		lineageTag: c958fe69-3ca9-42d3-9256-94fc6d8f94a5
+		summarizeBy: none
+		sourceColumn: account_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column classification
+		dataType: string
+		lineageTag: 078ddfb5-1a0f-4697-9ae3-af0e75b908d9
+		summarizeBy: none
+		sourceColumn: classification
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_type
+		dataType: string
+		lineageTag: db185d25-fb65-4bae-bf0c-d44d287f4869
+		summarizeBy: none
+		sourceColumn: account_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column statement
+		dataType: string
+		lineageTag: 34681ae2-5f7f-4f32-b4f5-0ac57258ba4d
+		summarizeBy: none
+		sourceColumn: statement
+
+		annotation SummarizationSetBy = Automatic
+
+	column walk_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 42de5d9a-ea7d-4220-bf42-5a425c09a272
+		summarizeBy: sum
+		sourceColumn: walk_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column walk
+		dataType: string
+		lineageTag: 980106a4-16fc-48b1-a133-6949b7ab448a
+		summarizeBy: none
+		sourceColumn: walk
+
+		annotation SummarizationSetBy = Automatic
+
+	column walk_step
+		dataType: string
+		lineageTag: c48ea0f3-3dfb-4db0-9e47-ee680e92cff2
+		summarizeBy: none
+		sourceColumn: walk_step
+
+		annotation SummarizationSetBy = Automatic
+
+	column relationship_to_arr
+		dataType: string
+		lineageTag: cc8df361-83f5-467a-9404-891def39938c
+		summarizeBy: none
+		sourceColumn: relationship_to_arr
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_gl_account = m
+		mode: import
+		source =
+				// ==== dim_gl_account ====
+				let
+				    Source = fnLoadCsv("dim_gl_account.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"account_id", type text},
+				        {"account_number", type text},
+				        {"account_name", type text},
+				        {"classification", type text},
+				        {"account_type", type text},
+				        {"statement", type text},
+				        {"walk_order", Int64.Type},
+				        {"walk", type text},
+				        {"walk_step", type text},
+				        {"relationship_to_arr", type text}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

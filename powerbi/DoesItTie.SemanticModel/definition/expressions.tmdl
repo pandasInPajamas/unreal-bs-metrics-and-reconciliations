@@ -1,0 +1,27 @@
+expression DataRoot = "  https://raw.githubusercontent.com/pandasInPajamas/unreal-bs-metrics-and-reconciliations/main/data/" meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: 760c4cb9-b8e2-4eb5-9cdf-438fd7b87e16
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
+expression fnLoadCsv =
+		// Paste into a Blank Query named fnLoadCsv.
+		// Needs a Text parameter named DataRoot:
+		//   https://raw.githubusercontent.com/pandasInPajamas/unreal-bs-metrics-and-reconciliations/main/data/
+		// RelativePath keeps the base URL static, so the Power BI service can refresh it.
+		// Empty cells become null, so typed columns (dates, numbers) don't error.
+		(fileName as text) as table =>
+		let
+		    Raw      = Web.Contents(DataRoot, [RelativePath = fileName]),
+		    Csv      = Csv.Document(Raw, [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+		    Promoted = Table.PromoteHeaders(Csv, [PromoteAllScalars = true]),
+		    Nulls    = Table.ReplaceValue(Promoted, "", null, Replacer.ReplaceValue, Table.ColumnNames(Promoted))
+		in
+		    Nulls
+	lineageTag: 040816a9-7e4c-4274-99fb-d9621878b129
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+

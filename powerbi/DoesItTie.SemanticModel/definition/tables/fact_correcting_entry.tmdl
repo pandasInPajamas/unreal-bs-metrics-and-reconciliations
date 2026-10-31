@@ -1,0 +1,96 @@
+table fact_correcting_entry
+	lineageTag: 628592b3-9e64-48d2-8eed-101c17fa5c24
+
+	column line_id
+		dataType: int64
+		formatString: 0
+		lineageTag: bc88655b-103f-45e5-b359-a3aea56ee4e9
+		summarizeBy: sum
+		sourceColumn: line_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column rc_id
+		dataType: string
+		lineageTag: 05edd61d-229e-47c1-b652-9381c66e52b2
+		summarizeBy: none
+		sourceColumn: rc_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column entry_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 91ec735c-d423-41d0-b162-44359bda3ced
+		summarizeBy: none
+		sourceColumn: entry_date
+
+		variation Variation
+			isDefault
+			relationship: efd28112-983a-408b-a0e3-7469bada81d4
+			defaultHierarchy: LocalDateTable_26ebb212-c5e2-492c-84cc-c1cb7fdc1990.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column memo
+		dataType: string
+		lineageTag: 4e77c356-1a35-487f-ba58-13e9a16da278
+		summarizeBy: none
+		sourceColumn: memo
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_name
+		dataType: string
+		lineageTag: 238184a3-cb94-4cc9-922e-95e77892a954
+		summarizeBy: none
+		sourceColumn: account_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column debit_usd
+		dataType: decimal
+		formatString: "£"#,0.###############;-"£"#,0.###############;"£"#,0.###############
+		lineageTag: bd03a236-8766-4769-946f-fd7f6e7fddcd
+		summarizeBy: sum
+		sourceColumn: debit_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	column credit_usd
+		dataType: decimal
+		formatString: "£"#,0.###############;-"£"#,0.###############;"£"#,0.###############
+		lineageTag: 915beffe-4c04-4c98-a4cc-a1e75d73bad4
+		summarizeBy: sum
+		sourceColumn: credit_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	partition fact_correcting_entry = m
+		mode: import
+		source =
+				// ==== fact_correcting_entry ====
+				let
+				    Source = fnLoadCsv("fact_correcting_entry.csv"),
+				    Typed = Table.TransformColumnTypes(Source, {
+				        {"line_id", Int64.Type},
+				        {"rc_id", type text},
+				        {"entry_date", type date},
+				        {"memo", type text},
+				        {"account_name", type text},
+				        {"debit_usd", Currency.Type},
+				        {"credit_usd", Currency.Type}
+				    }, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
