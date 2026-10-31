@@ -1,0 +1,7 @@
+rc_id,txn_date,check_name,stripe_usd,books_usd,diff_usd,evidence
+RC-01,2025-05-28,Stripe Clearing (net of fees),1008.73,1027.73,19.00,STRIPE-20250528: Posted by Stripe sync; includes finalized invoice UBS-001340 (later voided) | Void in Stripe: UBS-001340 (in_Ph0crNB0O2EeNBV0w9RNUuXZ)
+RC-01,2025-05-28,Subscription Revenue,1047.76,1066.76,19.00,STRIPE-20250528: Posted by Stripe sync; includes finalized invoice UBS-001340 (later voided) | Void in Stripe: UBS-001340 (in_Ph0crNB0O2EeNBV0w9RNUuXZ)
+RC-02,2025-07-20,Refunds,49.00,0.00,-49.00,re_eShdnWaFYyfsfOtUHYRbAEJ7 ($49.00 on charge ch_YA8OP3fzmKcMa25gUqxKEZNL)
+RC-03,2025-08-20,Subscription Revenue,370.60,1080.20,709.60,STRIPE-20250820: Posted by Stripe sync | Annual upgrades that day: in_v7ULAln9xkYB5Sq1UvJ8SQoB
+RC-03,2025-08-20,Deferred Revenue (billed),969.87,260.27,-709.60,STRIPE-20250820: Posted by Stripe sync | Annual upgrades that day: in_v7ULAln9xkYB5Sq1UvJ8SQoB
+RC-04,2026-03-18,Payouts → Deposits,893.07,3746.59,2853.52,"po_QbvLDkPkTaC22Q0k8VisA75N deposited 2× (DEP00357, DEP00358)"

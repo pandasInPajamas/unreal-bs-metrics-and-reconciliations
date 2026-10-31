@@ -1,0 +1,9 @@
+check_order,check_name,gl_account
+1,Stripe Clearing (net of fees),Stripe Clearing
+2,Merchant Fees,Merchant Fees
+3,Subscription Revenue,Subscription Revenue
+4,Deferred Revenue (billed),Deferred Revenue
+5,Top-up Revenue,Top-up Revenue
+6,Refunds,Refunds & Allowances
+7,Payouts → Deposits,Operating Checking
+8,Deferred Revenue balance (month-end),Deferred Revenue

@@ -1,0 +1,23 @@
+line_id,rc_id,entry_date,memo,account_name,debit_usd,credit_usd
+1,RC-01,2025-05-28,Reverse revenue for voided invoice UBS-001340,Subscription Revenue,19.00,
+2,RC-01,2025-05-28,Reverse revenue for voided invoice UBS-001340,Stripe Clearing,,19.00
+3,RC-02,2025-07-20,Book missing Stripe refund (Winifred Castellanos),Refunds & Allowances,49.00,
+4,RC-02,2025-07-20,Book missing Stripe refund (Winifred Castellanos),Stripe Clearing,,49.00
+5,RC-03,2025-08-20,Reclassify Ingrid Solberg's annual upgrade to deferred,Subscription Revenue,709.60,
+6,RC-03,2025-08-20,Reclassify Ingrid Solberg's annual upgrade to deferred,Deferred Revenue,,709.60
+7,RC-03,2025-08-31,Catch-up release of earned revenue on the reclassified charge,Deferred Revenue,45.38,
+8,RC-03,2025-08-31,Catch-up release of earned revenue on the reclassified charge,Subscription Revenue,,45.38
+9,RC-03,2025-09-30,Catch-up release of earned revenue on the reclassified charge,Deferred Revenue,123.77,
+10,RC-03,2025-09-30,Catch-up release of earned revenue on the reclassified charge,Subscription Revenue,,123.77
+11,RC-03,2025-10-31,Catch-up release of earned revenue on the reclassified charge,Deferred Revenue,127.89,
+12,RC-03,2025-10-31,Catch-up release of earned revenue on the reclassified charge,Subscription Revenue,,127.89
+13,RC-03,2025-11-30,Catch-up release of earned revenue on the reclassified charge,Deferred Revenue,123.77,
+14,RC-03,2025-11-30,Catch-up release of earned revenue on the reclassified charge,Subscription Revenue,,123.77
+15,RC-03,2025-12-31,Catch-up release of earned revenue on the reclassified charge,Deferred Revenue,127.89,
+16,RC-03,2025-12-31,Catch-up release of earned revenue on the reclassified charge,Subscription Revenue,,127.89
+17,RC-03,2026-01-31,Catch-up release of earned revenue on the reclassified charge,Deferred Revenue,127.90,
+18,RC-03,2026-01-31,Catch-up release of earned revenue on the reclassified charge,Subscription Revenue,,127.90
+19,RC-03,2026-02-28,Catch-up release of earned revenue on the reclassified charge,Deferred Revenue,33.00,
+20,RC-03,2026-02-28,Catch-up release of earned revenue on the reclassified charge,Subscription Revenue,,33.00
+21,RC-04,2026-03-18,Reverse duplicate deposit DEP00358,Stripe Clearing,2853.52,
+22,RC-04,2026-03-18,Reverse duplicate deposit DEP00358,Operating Checking,,2853.52

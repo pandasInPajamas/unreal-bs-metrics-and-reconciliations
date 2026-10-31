@@ -1,0 +1,11 @@
+# Power BI Desktop: local-only files inside a PBIP project
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+# Binary report files: this repo tracks the PBIP (text) version only
+*.pbix
+
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini

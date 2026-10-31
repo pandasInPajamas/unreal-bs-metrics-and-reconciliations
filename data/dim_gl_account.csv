@@ -1,0 +1,8 @@
+account_id,account_number,account_name,classification,account_type,statement,walk_order,walk,walk_step,relationship_to_arr
+100,1000,Operating Checking,Asset,Bank,Balance sheet,7,Walk 2,Deposit book errors (if any),The bank: where the walk ends
+101,1200,Stripe Clearing,Asset,Other Current Asset,Balance sheet,6,Walk 2,Payouts in transit,"Collected by Stripe, not yet in the bank"
+102,2300,Deferred Revenue,Liability,Other Current Liability,Balance sheet,4,Walk 2,"Annual billed, not yet earned",Annual ARR paid upfront and not yet earned
+103,4000,Subscription Revenue,Revenue,Income,P&L,1,Walk 1,Monthly plans · Annual plans · FX,"ARR on the P&L: monthly plans as billed, annual plans as earned"
+104,4100,Top-up Revenue,Revenue,Income,P&L,2,Walk 1,Top-ups (not ARR),Revenue that is never ARR: one-off credit packs
+105,4900,Refunds & Allowances,Revenue,Income,P&L,3,Walk 1,Refunds,"Lowers revenue without lowering ARR, unless the customer leaves"
+106,6100,Merchant Fees,Expense,Expense,P&L,5,Walk 2,Merchant fees,The cost of collecting: why cash is less than billed

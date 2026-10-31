@@ -1,0 +1,13 @@
+month_check_key,month,check_name,rc_id
+2025-05-01|Stripe Clearing (net of fees),2025-05-01,Stripe Clearing (net of fees),RC-01
+2025-05-01|Subscription Revenue,2025-05-01,Subscription Revenue,RC-01
+2025-07-01|Refunds,2025-07-01,Refunds,RC-02
+2025-08-01|Deferred Revenue (billed),2025-08-01,Deferred Revenue (billed),RC-03
+2025-08-01|Deferred Revenue balance (month-end),2025-08-01,Deferred Revenue balance (month-end),RC-03
+2025-08-01|Subscription Revenue,2025-08-01,Subscription Revenue,RC-03
+2025-09-01|Deferred Revenue balance (month-end),2025-09-01,Deferred Revenue balance (month-end),RC-03
+2025-10-01|Deferred Revenue balance (month-end),2025-10-01,Deferred Revenue balance (month-end),RC-03
+2025-11-01|Deferred Revenue balance (month-end),2025-11-01,Deferred Revenue balance (month-end),RC-03
+2025-12-01|Deferred Revenue balance (month-end),2025-12-01,Deferred Revenue balance (month-end),RC-03
+2026-01-01|Deferred Revenue balance (month-end),2026-01-01,Deferred Revenue balance (month-end),RC-03
+2026-03-01|Payouts → Deposits,2026-03-01,Payouts → Deposits,RC-04
