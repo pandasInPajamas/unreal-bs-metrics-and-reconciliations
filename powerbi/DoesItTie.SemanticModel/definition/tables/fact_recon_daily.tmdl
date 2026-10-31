@@ -8,11 +8,6 @@ table fact_recon_daily
 		summarizeBy: none
 		sourceColumn: txn_date
 
-		variation Variation
-			isDefault
-			relationship: 80e17e49-b864-46a2-9956-24cb7f613dc9
-			defaultHierarchy: LocalDateTable_97a142c0-5d4d-4b9a-a5cc-e97aa493af25.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date

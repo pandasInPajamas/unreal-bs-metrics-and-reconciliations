@@ -1,0 +1,94 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "0be9f0cc92076533dc00",
+  "position": {
+    "x": 10.097062165232916,
+    "y": 0,
+    "z": 0,
+    "height": 387.05404966726178,
+    "width": 619.28647946761885,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_recon_check"
+                    }
+                  },
+                  "Property": "check_name"
+                }
+              },
+              "queryRef": "dim_recon_check.check_name",
+              "nativeQueryRef": "check_name"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact_recon_monthly"
+                        }
+                      },
+                      "Property": "month"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "fact_recon_monthly.month",
+              "nativeQueryRef": "Count of month"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d4549f184a14b078e955",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_recon_check"
+              }
+            },
+            "Property": "check_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f661fe0359102bd208a4",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_recon_monthly"
+                  }
+                },
+                "Property": "month"
+              }
+            },
+            "Function": 5
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

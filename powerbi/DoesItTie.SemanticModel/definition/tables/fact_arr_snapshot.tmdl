@@ -8,11 +8,6 @@ table fact_arr_snapshot
 		summarizeBy: none
 		sourceColumn: snapshot_month
 
-		variation Variation
-			isDefault
-			relationship: c2fe8465-ca18-4df8-bbc1-7630fd873b36
-			defaultHierarchy: LocalDateTable_86c02a50-bce2-4b03-8cd9-c344c3b8dded.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date

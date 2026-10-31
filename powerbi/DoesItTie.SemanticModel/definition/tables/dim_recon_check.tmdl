@@ -15,6 +15,9 @@ table dim_recon_check
 		lineageTag: f54fd463-00e5-4400-ab18-4bb25466cd15
 		summarizeBy: none
 		sourceColumn: check_name
+		sortByColumn: check_order
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 

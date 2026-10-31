@@ -8,11 +8,6 @@ table fact_gl_line
 		summarizeBy: none
 		sourceColumn: posting_date
 
-		variation Variation
-			isDefault
-			relationship: 64dfa069-055a-4791-abc0-7c4b60951936
-			defaultHierarchy: LocalDateTable_827adbb7-1e65-4cfc-a862-addc3a37410f.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date

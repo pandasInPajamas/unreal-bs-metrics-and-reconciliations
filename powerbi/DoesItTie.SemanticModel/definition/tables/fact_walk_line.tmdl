@@ -8,11 +8,6 @@ table fact_walk_line
 		summarizeBy: none
 		sourceColumn: month
 
-		variation Variation
-			isDefault
-			relationship: 518bd17e-f606-4e77-bd72-363e0bb930b1
-			defaultHierarchy: LocalDateTable_df08e896-4277-43ca-aa2a-7df42046a010.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date

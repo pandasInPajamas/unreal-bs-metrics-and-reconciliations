@@ -32,11 +32,6 @@ table dim_root_cause
 		summarizeBy: none
 		sourceColumn: from_date
 
-		variation Variation
-			isDefault
-			relationship: 801353cd-b2b9-40b0-9963-04b2a9d812b0
-			defaultHierarchy: LocalDateTable_36bc0676-5c8b-4b16-bb35-82af7cfe687e.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -47,11 +42,6 @@ table dim_root_cause
 		lineageTag: 6eb36666-9886-4b02-914b-67b2fe8fcd03
 		summarizeBy: none
 		sourceColumn: to_date
-
-		variation Variation
-			isDefault
-			relationship: 28813abd-024b-4955-95ec-6566bcfd3628
-			defaultHierarchy: LocalDateTable_e7b1cc03-7319-4d3b-84a7-d3bbee42a768.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 

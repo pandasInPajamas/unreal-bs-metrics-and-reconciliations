@@ -25,11 +25,6 @@ table fact_correcting_entry
 		summarizeBy: none
 		sourceColumn: entry_date
 
-		variation Variation
-			isDefault
-			relationship: efd28112-983a-408b-a0e3-7469bada81d4
-			defaultHierarchy: LocalDateTable_26ebb212-c5e2-492c-84cc-c1cb7fdc1990.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date

@@ -16,11 +16,6 @@ table fact_recon_exception
 		summarizeBy: none
 		sourceColumn: txn_date
 
-		variation Variation
-			isDefault
-			relationship: 75a11a6d-b937-4e46-85f1-7678d0baa074
-			defaultHierarchy: LocalDateTable_0049ff95-95ed-4903-b674-e6d71944b820.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date

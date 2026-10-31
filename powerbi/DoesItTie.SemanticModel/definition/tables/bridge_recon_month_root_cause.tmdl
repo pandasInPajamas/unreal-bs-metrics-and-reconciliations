@@ -16,11 +16,6 @@ table bridge_recon_month_root_cause
 		summarizeBy: none
 		sourceColumn: month
 
-		variation Variation
-			isDefault
-			relationship: 8b2fd45f-8bbf-47d8-b22d-fd1bfdf7cd4a
-			defaultHierarchy: LocalDateTable_4d0f6dce-23a4-4599-9949-a01774ad0f26.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date

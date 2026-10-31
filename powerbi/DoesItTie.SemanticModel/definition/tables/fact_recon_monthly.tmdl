@@ -16,11 +16,6 @@ table fact_recon_monthly
 		summarizeBy: none
 		sourceColumn: month
 
-		variation Variation
-			isDefault
-			relationship: e40a3be3-95c6-4884-a589-f433610ddd89
-			defaultHierarchy: LocalDateTable_9b3923d7-223c-40b3-99f6-a3ed732da703.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date

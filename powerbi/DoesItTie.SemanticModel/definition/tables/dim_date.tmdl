@@ -1,17 +1,14 @@
 table dim_date
 	lineageTag: 572571cd-7652-4d6e-b572-5427977c3fdb
+	dataCategory: Time
 
 	column date
 		dataType: dateTime
+		isKey
 		formatString: Long Date
 		lineageTag: 8a2a280e-276c-45ad-aa98-d2976c25bf4c
 		summarizeBy: none
 		sourceColumn: date
-
-		variation Variation
-			isDefault
-			relationship: 70a3ceb4-4baf-4dd5-a28a-bab242933d9c
-			defaultHierarchy: LocalDateTable_2002dbce-45d1-4f34-9608-3020d8298586.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -23,11 +20,6 @@ table dim_date
 		lineageTag: 7fe9fe26-65ff-4073-b490-17ec13f9c2c8
 		summarizeBy: none
 		sourceColumn: month_start
-
-		variation Variation
-			isDefault
-			relationship: 289fbd4c-465f-4586-ba64-f3d8308cb019
-			defaultHierarchy: LocalDateTable_15c014e0-c7c7-43e1-8445-1f87bfc3e913.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -56,6 +48,9 @@ table dim_date
 		lineageTag: 8dc9b344-0413-4433-9c93-2ef8d0d64019
 		summarizeBy: none
 		sourceColumn: month_label
+		sortByColumn: month_start
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 

@@ -1,146 +1,90 @@
-relationship 70a3ceb4-4baf-4dd5-a28a-bab242933d9c
-	joinOnDateBehavior: datePartOnly
-	fromColumn: dim_date.date
-	toColumn: LocalDateTable_2002dbce-45d1-4f34-9608-3020d8298586.Date
-
-relationship 289fbd4c-465f-4586-ba64-f3d8308cb019
-	joinOnDateBehavior: datePartOnly
-	fromColumn: dim_date.month_start
-	toColumn: LocalDateTable_15c014e0-c7c7-43e1-8445-1f87bfc3e913.Date
-
-relationship d7d77f22-d128-4861-a9e4-416065c8436a
-	joinOnDateBehavior: datePartOnly
-	fromColumn: dim_customer.created_date
-	toColumn: LocalDateTable_b32b68ab-a6d7-40c9-81dd-33149b3b07dc.Date
-
-relationship dd285b7b-6f38-412f-99f4-44b330703ea1
-	joinOnDateBehavior: datePartOnly
-	fromColumn: dim_customer.first_arr_month
-	toColumn: LocalDateTable_9e7a995a-58fe-46c2-a8d9-f5cc68e05b6e.Date
-
-relationship 801353cd-b2b9-40b0-9963-04b2a9d812b0
-	joinOnDateBehavior: datePartOnly
-	fromColumn: dim_root_cause.from_date
-	toColumn: LocalDateTable_36bc0676-5c8b-4b16-bb35-82af7cfe687e.Date
-
-relationship 28813abd-024b-4955-95ec-6566bcfd3628
-	joinOnDateBehavior: datePartOnly
-	fromColumn: dim_root_cause.to_date
-	toColumn: LocalDateTable_e7b1cc03-7319-4d3b-84a7-d3bbee42a768.Date
-
-relationship c2fe8465-ca18-4df8-bbc1-7630fd873b36
-	joinOnDateBehavior: datePartOnly
+relationship 99093c7a-def9-0af2-b123-2184cc4a0c3a
 	fromColumn: fact_arr_snapshot.snapshot_month
-	toColumn: LocalDateTable_86c02a50-bce2-4b03-8cd9-c344c3b8dded.Date
+	toColumn: dim_date.date
 
-relationship 20243846-3836-45b8-b75d-7506fe8f2173
-	joinOnDateBehavior: datePartOnly
+relationship 1c84ce55-438b-a6ed-9b80-a5205233bdcd
 	fromColumn: fact_arr_movement.snapshot_month
-	toColumn: LocalDateTable_7caa773f-696e-4c77-9a2d-901965f69f1d.Date
+	toColumn: dim_date.date
 
-relationship 64dfa069-055a-4791-abc0-7c4b60951936
-	joinOnDateBehavior: datePartOnly
+relationship 38c8e2a0-9e50-7547-9098-fe12af12290e
 	fromColumn: fact_gl_line.posting_date
-	toColumn: LocalDateTable_827adbb7-1e65-4cfc-a862-addc3a37410f.Date
+	toColumn: dim_date.date
 
-relationship 80e17e49-b864-46a2-9956-24cb7f613dc9
-	joinOnDateBehavior: datePartOnly
+relationship 1280740e-9b70-c36d-30d3-689c8ef87c6e
 	fromColumn: fact_recon_daily.txn_date
-	toColumn: LocalDateTable_97a142c0-5d4d-4b9a-a5cc-e97aa493af25.Date
+	toColumn: dim_date.date
 
-relationship e40a3be3-95c6-4884-a589-f433610ddd89
-	joinOnDateBehavior: datePartOnly
+relationship 37a69961-732b-b10f-50c7-abfe688becde
 	fromColumn: fact_recon_monthly.month
-	toColumn: LocalDateTable_9b3923d7-223c-40b3-99f6-a3ed732da703.Date
+	toColumn: dim_date.date
 
-relationship 75a11a6d-b937-4e46-85f1-7678d0baa074
-	joinOnDateBehavior: datePartOnly
+relationship f3d42b0f-f481-6eb1-e910-712688470390
 	fromColumn: fact_recon_exception.txn_date
-	toColumn: LocalDateTable_0049ff95-95ed-4903-b674-e6d71944b820.Date
+	toColumn: dim_date.date
 
-relationship efd28112-983a-408b-a0e3-7469bada81d4
-	joinOnDateBehavior: datePartOnly
+relationship 6f03ccad-abdd-1a65-8166-d7ade09de419
 	fromColumn: fact_correcting_entry.entry_date
-	toColumn: LocalDateTable_26ebb212-c5e2-492c-84cc-c1cb7fdc1990.Date
+	toColumn: dim_date.date
 
-relationship 518bd17e-f606-4e77-bd72-363e0bb930b1
-	joinOnDateBehavior: datePartOnly
-	fromColumn: fact_walk_line.month
-	toColumn: LocalDateTable_df08e896-4277-43ca-aa2a-7df42046a010.Date
+relationship dd89fec0-7e5f-d468-bf44-92ad14c97af0
+	fromColumn: fact_walk_line.gl_account
+	toColumn: dim_date.date
 
-relationship 8b2fd45f-8bbf-47d8-b22d-fd1bfdf7cd4a
-	joinOnDateBehavior: datePartOnly
-	fromColumn: bridge_recon_month_root_cause.month
-	toColumn: LocalDateTable_4d0f6dce-23a4-4599-9949-a01774ad0f26.Date
-
-relationship AutoDetected_f07f637f-eb48-4875-99eb-e5bb5ac9605d
+relationship caa163c7-be2a-2281-1a39-cc6ea3eb76f9
 	fromColumn: fact_arr_snapshot.customer_id
 	toColumn: dim_customer.customer_id
 
-relationship AutoDetected_7d894104-105b-48b0-877c-4be00683f83d
+relationship be02e1e1-ccdb-d5b1-5519-53696b20d786
 	fromColumn: fact_arr_movement.customer_id
 	toColumn: dim_customer.customer_id
 
-relationship AutoDetected_6440ad96-1cba-46f1-9250-29989e831959
+relationship 14f2c786-d2e1-9d47-b781-428b5408a15c
 	fromColumn: fact_walk_line.customer_id
 	toColumn: dim_customer.customer_id
 
-relationship AutoDetected_eb616b34-70eb-41ec-b4bf-633ee2f9d3a4
+relationship 8e87f9a4-94d0-9ab6-4392-56e5ff141fde
 	fromColumn: fact_gl_line.account_id
 	toColumn: dim_gl_account.account_id
 
-relationship AutoDetected_0be7fa2f-e061-4268-9c07-ad536131581f
+relationship 4a07fc45-bfa9-6218-ff62-1fd8a966ff2f
 	fromColumn: fact_correcting_entry.account_name
 	toColumn: dim_gl_account.account_name
 
-relationship AutoDetected_c7b250b9-8e31-45ed-9f90-67b93cc8cec8
-	fromColumn: fact_recon_daily.check_name
-	toColumn: dim_recon_check.check_name
-
-relationship AutoDetected_67807429-0228-4fdc-977c-c56597a532e7
-	fromColumn: fact_recon_monthly.check_name
-	toColumn: dim_recon_check.check_name
-
-relationship AutoDetected_ad6cda01-0b6e-4457-8cc5-d66d9792ecf5
+relationship 6f577aec-997e-b6d9-673c-3d8a776f2801
 	fromColumn: fact_recon_exception.check_name
 	toColumn: dim_recon_check.check_name
 
-relationship AutoDetected_d48aa641-b11a-4c62-8b3e-fd8213f4b049
-	fromColumn: bridge_recon_month_root_cause.check_name
+relationship 252ff630-99c3-95d8-2278-52690040b013
+	fromColumn: fact_recon_monthly.check_name
 	toColumn: dim_recon_check.check_name
 
-relationship AutoDetected_4fbf4a97-65a9-4209-970d-367fcb0d32ee
-	fromColumn: bridge_root_cause_check.check_name
+relationship 33d60c97-42b7-10b2-0007-aa01bbdd8cad
+	fromColumn: fact_recon_daily.check_name
 	toColumn: dim_recon_check.check_name
 
-relationship AutoDetected_c3ad2d4f-830a-415f-8fa8-b56fef54377d
+relationship c7c416a3-fefb-445b-0fbb-0c38a7878ac5
 	fromColumn: fact_recon_exception.rc_id
 	toColumn: dim_root_cause.rc_id
 
-relationship AutoDetected_1184573d-28f7-4960-8c5b-9639ef1e662c
+relationship 531e1f8d-1437-1893-d0cc-f6d0c14b5ae7
 	fromColumn: fact_correcting_entry.rc_id
 	toColumn: dim_root_cause.rc_id
 
-relationship AutoDetected_1d32b4b0-e593-4b15-b527-4c5bfbbd6298
+relationship cef11222-67b3-d50f-ecea-0a15e14fb6f9
 	fromColumn: fact_walk_line.rc_id
 	toColumn: dim_root_cause.rc_id
 
-relationship AutoDetected_2efc3ea8-0d41-409b-82ad-df6a84fd89b5
+relationship d7767592-14e7-d129-25fc-39a3bcb488cd
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fact_recon_monthly.month_check_key
+	toColumn: bridge_recon_month_root_cause.month_check_key
+
+relationship fd5f47e4-fb80-24ea-7909-4ff3007b3423
 	fromColumn: bridge_recon_month_root_cause.rc_id
 	toColumn: dim_root_cause.rc_id
 
-relationship AutoDetected_7d8c27e4-8a97-4b7e-9fd1-034f1f776656
-	fromColumn: bridge_root_cause_check.rc_id
-	toColumn: dim_root_cause.rc_id
-
-relationship AutoDetected_dc003970-b265-4e0b-b14b-728a7812e307
+relationship 9cd5baa8-e13d-f16a-8028-9974d5186682
 	fromColumn: fact_walk_line.step_key
 	toColumn: dim_walk_step.step_key
-
-relationship AutoDetected_82e2797d-221b-46e5-99b0-f47e1c3f6399
-	isActive: false
-	crossFilteringBehavior: bothDirections
-	fromCardinality: one
-	fromColumn: bridge_recon_month_root_cause.month_check_key
-	toColumn: fact_recon_monthly.month_check_key
 

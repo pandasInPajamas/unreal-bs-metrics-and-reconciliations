@@ -48,11 +48,6 @@ table dim_customer
 		summarizeBy: none
 		sourceColumn: created_date
 
-		variation Variation
-			isDefault
-			relationship: d7d77f22-d128-4861-a9e4-416065c8436a
-			defaultHierarchy: LocalDateTable_b32b68ab-a6d7-40c9-81dd-33149b3b07dc.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
@@ -63,11 +58,6 @@ table dim_customer
 		lineageTag: 8adb688f-d7b1-41d6-b8fc-7633ca605b81
 		summarizeBy: none
 		sourceColumn: first_arr_month
-
-		variation Variation
-			isDefault
-			relationship: dd285b7b-6f38-412f-99f4-44b330703ea1
-			defaultHierarchy: LocalDateTable_9e7a995a-58fe-46c2-a8d9-f5cc68e05b6e.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 

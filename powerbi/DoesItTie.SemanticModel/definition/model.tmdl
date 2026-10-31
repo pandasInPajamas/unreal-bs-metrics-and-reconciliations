@@ -7,43 +7,27 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation __PBI_TimeIntelligenceEnabled = 1
+annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_QueryOrder = ["DataRoot","fnLoadCsv","dim_date","dim_customer","dim_gl_account","dim_recon_check","dim_root_cause","dim_walk_step","fact_arr_snapshot","fact_arr_movement","fact_gl_line","fact_recon_daily","fact_recon_monthly","fact_recon_exception","fact_correcting_entry","fact_walk_line","bridge_recon_month_root_cause","bridge_root_cause_check"]
 
-annotation PBI_ProTooling = ["DevMode"]
+annotation PBI_ProTooling = ["DevMode","TMDLView_Desktop"]
 
 ref table dim_date
-ref table DateTableTemplate_5248870f-f26c-4b89-aa25-dde44c6d9703
-ref table LocalDateTable_2002dbce-45d1-4f34-9608-3020d8298586
-ref table LocalDateTable_15c014e0-c7c7-43e1-8445-1f87bfc3e913
 ref table dim_customer
-ref table LocalDateTable_b32b68ab-a6d7-40c9-81dd-33149b3b07dc
-ref table LocalDateTable_9e7a995a-58fe-46c2-a8d9-f5cc68e05b6e
 ref table dim_gl_account
 ref table dim_recon_check
 ref table dim_root_cause
-ref table LocalDateTable_36bc0676-5c8b-4b16-bb35-82af7cfe687e
-ref table LocalDateTable_e7b1cc03-7319-4d3b-84a7-d3bbee42a768
 ref table dim_walk_step
 ref table fact_arr_snapshot
-ref table LocalDateTable_86c02a50-bce2-4b03-8cd9-c344c3b8dded
 ref table fact_arr_movement
-ref table LocalDateTable_7caa773f-696e-4c77-9a2d-901965f69f1d
 ref table fact_gl_line
-ref table LocalDateTable_827adbb7-1e65-4cfc-a862-addc3a37410f
 ref table fact_recon_daily
-ref table LocalDateTable_97a142c0-5d4d-4b9a-a5cc-e97aa493af25
 ref table fact_recon_monthly
-ref table LocalDateTable_9b3923d7-223c-40b3-99f6-a3ed732da703
 ref table fact_recon_exception
-ref table LocalDateTable_0049ff95-95ed-4903-b674-e6d71944b820
 ref table fact_correcting_entry
-ref table LocalDateTable_26ebb212-c5e2-492c-84cc-c1cb7fdc1990
 ref table fact_walk_line
-ref table LocalDateTable_df08e896-4277-43ca-aa2a-7df42046a010
 ref table bridge_recon_month_root_cause
-ref table LocalDateTable_4d0f6dce-23a4-4599-9949-a01774ad0f26
 ref table bridge_root_cause_check
 
 ref cultureInfo en-US

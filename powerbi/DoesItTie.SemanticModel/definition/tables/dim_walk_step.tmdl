@@ -33,6 +33,9 @@ table dim_walk_step
 		lineageTag: dd3ca3a7-b81a-43b4-8766-440a4067e81e
 		summarizeBy: none
 		sourceColumn: step
+		sortByColumn: step_key
+
+		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
