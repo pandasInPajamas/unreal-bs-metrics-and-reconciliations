@@ -1,0 +1,304 @@
+table _Measures
+	lineageTag: ac14fbf9-2a02-4cd7-b8ae-6688135a51dc
+
+	measure MRR =
+			
+			VAR LastSnap = MAX ( fact_arr_snapshot[snapshot_month] )
+			RETURN
+			    CALCULATE (
+			        SUM ( fact_arr_snapshot[mrr_usd] ),
+			        REMOVEFILTERS ( dim_date ),
+			        fact_arr_snapshot[snapshot_month] = LastSnap
+			    )
+		formatString: 0
+		lineageTag: ebe31fdd-006c-4751-8294-17f37badaa5a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure ARR =
+			
+			VAR LastSnap = MAX ( fact_arr_snapshot[snapshot_month] )
+			RETURN
+			    CALCULATE (
+			        SUM ( fact_arr_snapshot[arr_usd] ),
+			        REMOVEFILTERS ( dim_date ),
+			        fact_arr_snapshot[snapshot_month] = LastSnap
+			    )
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 8f1ad29f-ef0d-449f-9951-22d3c1b84615
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Active Customers' =
+			
+			VAR LastSnap = MAX ( fact_arr_snapshot[snapshot_month] )
+			RETURN
+			    CALCULATE (
+			        DISTINCTCOUNT ( fact_arr_snapshot[customer_id] ),
+			        REMOVEFILTERS ( dim_date ),
+			        fact_arr_snapshot[snapshot_month] = LastSnap,
+			        fact_arr_snapshot[arr_usd] > 0
+			    )
+		formatString: 0
+		lineageTag: 3c5de309-fb8b-40b4-8817-52ec3016b368
+
+	measure 'New ARR' = CALCULATE ( SUM ( fact_arr_movement[movement_usd] ), fact_arr_movement[movement_type] = "New" )
+		lineageTag: 11ff4601-c89a-45b3-91d6-1ac70a8e41ed
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expansion ARR' = CALCULATE ( SUM ( fact_arr_movement[movement_usd] ), fact_arr_movement[movement_type] = "Expansion" )
+		lineageTag: fa122ede-e01b-41ef-aa80-a3538ceb346e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Reactivation ARR' = CALCULATE ( SUM ( fact_arr_movement[movement_usd] ), fact_arr_movement[movement_type] = "Reactivation" )
+		lineageTag: 52295bdd-890f-44cf-89ea-e07083741475
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Contraction ARR' = CALCULATE ( SUM ( fact_arr_movement[movement_usd] ), fact_arr_movement[movement_type] = "Contraction" )
+		lineageTag: 7fcfb73d-5553-4cc0-b89d-21777cfd0593
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Churn ARR' = CALCULATE ( SUM ( fact_arr_movement[movement_usd] ), fact_arr_movement[movement_type] = "Churn" )
+		lineageTag: fc89d145-5b2f-4eec-8e18-079dd2d733c9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'New Customers' = CALCULATE ( DISTINCTCOUNT ( fact_arr_movement[customer_id] ), fact_arr_movement[movement_type] = "New" )
+		formatString: 0
+		lineageTag: d2e78cf7-1c27-4718-87e5-3ec393dcb3c3
+
+	measure 'Reactivated Customers' = CALCULATE ( DISTINCTCOUNT ( fact_arr_movement[customer_id] ), fact_arr_movement[movement_type] = "Reactivation" )
+		formatString: 0
+		lineageTag: ad8179e2-2bcd-4ed4-a543-cea790bfc1a9
+
+	measure 'Churned Customers' = CALCULATE ( DISTINCTCOUNT ( fact_arr_movement[customer_id] ), fact_arr_movement[movement_type] = "Churn" )
+		formatString: 0
+		lineageTag: b552699c-62db-454b-865b-194b12c39e0f
+
+	measure 'Quick Ratio' =
+			
+			DIVIDE (
+			    [New ARR] + [Expansion ARR] + [Reactivation ARR],
+			    - ( [Contraction ARR] + [Churn ARR] )
+			)
+		lineageTag: bd0bc44a-0701-467a-8240-a1bb0d9b9a50
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Logo Quick Ratio' =
+			
+			DIVIDE (
+			    [New Customers] + [Reactivated Customers],
+			    [Churned Customers]
+			)
+		lineageTag: 9e1bcddb-79cd-42cb-b489-8090c40589d7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Period Scale' =
+			
+			VAR Sel = SELECTEDVALUE ( 'MRR/ARR'[MRR/ARR Order], 1 )   -- default: ARR
+			RETURN IF ( Sel = 0, 1 / 12, 1 )
+		lineageTag: a2f3ba34-9f47-475d-bffe-be84afa78deb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'New (display)' = [New ARR] * [Period Scale]
+		lineageTag: 23d3896f-63c9-42fc-946f-0b6d36bc8d36
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expansion (display)' = [Expansion ARR] * [Period Scale]
+		lineageTag: 380f26b9-037a-4c2e-8a11-62ab2b2d5aa6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Reactivation (display)' = [Reactivation ARR] * [Period Scale]
+		lineageTag: 91a5fe04-ec70-4aa3-b68a-2ac49f6dd532
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Contraction (display)' = ```
+			[Contraction ARR] * [Period Scale]  
+			```
+		lineageTag: cdf49ded-71e3-439a-864c-c9843e7817c6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Churn (display)' = ```
+			[Churn ARR] * [Period Scale]    
+			```
+		lineageTag: 1ef28814-16f6-4126-9b28-d49034389779
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'FX ARR' = SUM ( fact_arr_movement[fx_usd] )
+		lineageTag: 7c192036-ea53-4285-a439-b1f6ded04465
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'FX (display)' = [FX ARR] * [Period Scale]
+		lineageTag: 626a6f59-fa58-4842-9db7-1a666fdfe45b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Bridge Value' =
+			
+			VAR s = SELECTEDVALUE ( 'Bridge Steps'[Step] )
+			VAR v =
+			    SWITCH ( s,
+			        "New", [New (display)],
+			        "Expansion", [Expansion (display)],
+			        "Reactivation", [Reactivation (display)],
+			        "Contraction", [Contraction (display)],
+			        "Churn", [Churn (display)],
+			        "FX", [FX (display)]
+			    )
+			RETURN IF ( v = 0, BLANK (), v )
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 140b0e55-70cf-4c64-ad18-62ae69cf34d1
+
+	measure 'Customers Gained' = [New Customers] + [Reactivated Customers]
+		formatString: 0
+		lineageTag: a5851a11-b34b-4b29-a70c-716e246d83aa
+
+	measure 'Customers Lost' = - [Churned Customers]
+		formatString: 0
+		lineageTag: 3118ce33-0ec6-45ac-b259-c13e4591247e
+
+	measure 'Net Customers' = [Customers Gained] + [Customers Lost]
+		formatString: 0
+		lineageTag: ad7c3eb0-5f5a-46e7-9b50-3d4330e881fd
+
+	measure 'Quick Ratio 3M' =
+			
+			VAR Win = DATESINPERIOD ( dim_date[date], MAX ( dim_date[date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [New ARR] + [Expansion ARR] + [Reactivation ARR], Win ),
+			        - CALCULATE ( [Contraction ARR] + [Churn ARR], Win )
+			    )
+		lineageTag: 39401300-5504-46c6-9178-6f3566d20948
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Logo Quick Ratio 3M' =
+			
+			VAR Win = DATESINPERIOD ( dim_date[date], MAX ( dim_date[date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [New Customers] + [Reactivated Customers], Win ),
+			        CALCULATE ( [Churned Customers], Win )
+			    )
+		lineageTag: 55853c81-84fa-48af-b234-1fab799a0b5f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MRR Sparkline' =
+			
+			VAR EndM = MAX ( dim_date[month_start] )
+			VAR Pts =
+			    ADDCOLUMNS (
+			        CALCULATETABLE (
+			            VALUES ( dim_date[month_start] ),
+			            REMOVEFILTERS ( dim_date ),
+			            dim_date[month_start] > EDATE ( EndM, -12 ),
+			            dim_date[month_start] <= EndM
+			        ),
+			        "@v",
+			            VAR m = dim_date[month_start]
+			            RETURN CALCULATE ( [MRR], REMOVEFILTERS ( dim_date ), dim_date[month_start] = m )
+			    )
+			VAR Ranked = ADDCOLUMNS ( Pts, "@i", RANKX ( Pts, dim_date[month_start], , ASC ) - 1 )
+			VAR N = COUNTROWS ( Ranked )
+			VAR MinV = MINX ( Ranked, [@v] )
+			VAR MaxV = MAXX ( Ranked, [@v] )
+			VAR W = 120  VAR H = 32  VAR Pad = 3
+			VAR Coords =
+			    CONCATENATEX (
+			        Ranked,
+			        FORMAT ( Pad + [@i] * ( W - 2 * Pad ) / MAX ( N - 1, 1 ), "0.0" ) & ","
+			            & FORMAT ( H - Pad - DIVIDE ( [@v] - MinV, MaxV - MinV ) * ( H - 2 * Pad ), "0.0" ),
+			        " ", dim_date[month_start], ASC
+			    )
+			VAR LastV = MAXX ( FILTER ( Ranked, dim_date[month_start] = EndM ), [@v] )
+			VAR LastY = H - Pad - DIVIDE ( LastV - MinV, MaxV - MinV ) * ( H - 2 * Pad )
+			RETURN
+			    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 " & W & " " & H & "'>"
+			    & "<polyline fill='none' stroke='%238B8FA3' stroke-width='1.5' stroke-linejoin='round' points='" & Coords & "'/>"
+			    & "<circle cx='" & W - Pad & "' cy='" & FORMAT ( LastY, "0.0" ) & "' r='2.5' fill='%232DD4BF'/>"
+			    & "</svg>"
+		lineageTag: 16732926-e6d9-4954-971e-365356e438e4
+
+	measure 'Run Rate (display)' = [ARR] * [Period Scale]
+		lineageTag: 03b7b708-7ea6-48e7-91fd-bc21d7076e61
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Run Rate (MRR/ARR) Sparkline' =
+			
+			VAR EndM = MAX ( dim_date[month_start] )
+			VAR Pts =
+			    ADDCOLUMNS (
+			        CALCULATETABLE (
+			            VALUES ( dim_date[month_start] ),
+			            REMOVEFILTERS ( dim_date ),
+			            dim_date[month_start] > EDATE ( EndM, -12 ),
+			            dim_date[month_start] <= EndM
+			        ),
+			        "@v",
+			            VAR m = dim_date[month_start]
+			            RETURN CALCULATE ( [Run Rate (display)], REMOVEFILTERS ( dim_date ), dim_date[month_start] = m )
+			    )
+			VAR Ranked = ADDCOLUMNS ( Pts, "@i", RANKX ( Pts, dim_date[month_start], , ASC ) - 1 )
+			VAR N = COUNTROWS ( Ranked )
+			VAR MinV = MINX ( Ranked, [@v] )
+			VAR MaxV = MAXX ( Ranked, [@v] )
+			VAR W = 120
+			VAR H = 32
+			VAR Pad = 4
+			VAR Floor = H * 0.65
+			VAR Coords =
+			    CONCATENATEX (
+			        Ranked,
+			        FORMAT ( Pad + [@i] * ( W - 2 * Pad ) / MAX ( N - 1, 1 ), "0.0" ) & ","
+			            & FORMAT ( Floor - DIVIDE ( [@v] - MinV, MaxV - MinV ) * ( Floor - Pad ), "0.0" ),
+			        " ", dim_date[month_start], ASC
+			    )
+			VAR Area = Coords & " " & ( W - Pad ) & "," & H & " " & Pad & "," & H
+			VAR LastV = MAXX ( FILTER ( Ranked, dim_date[month_start] = EndM ), [@v] )
+			VAR LastY = Floor - DIVIDE ( LastV - MinV, MaxV - MinV ) * ( Floor - Pad )
+			RETURN
+			    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 " & W & " " & H & "'>"
+			    & "<defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'>"
+			    & "<stop offset='0' stop-color='%2322D3EE' stop-opacity='0.35'/>"
+			    & "<stop offset='1' stop-color='%2322D3EE' stop-opacity='0'/>"
+			    & "</linearGradient></defs>"
+			    & "<polygon fill='url(%23g)' points='" & Area & "'/>"
+			    & "<polyline fill='none' stroke='%2322D3EE' stroke-width='1.25' stroke-linejoin='round' points='" & Coords & "'/>"
+			    & "<rect x='" & FORMAT ( W - Pad - 1.75, "0.0" ) & "' y='" & FORMAT ( LastY - 1.75, "0.0" ) & "' width='3.5' height='3.5' fill='%23FFFFFF'/>"
+			    & "</svg>"
+		lineageTag: baef59d3-5e34-4753-ae6a-a8728b329e7c
+		dataCategory: ImageUrl
+
+	column _placeholder
+		isHidden
+		lineageTag: e02a9177-f51a-4364-9c4d-4fbbaa9f34bb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [_placeholder]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = ```
+				ROW( "_placeholder", "" ) 
+				```
+
+	annotation PBI_Id = 46911a4ac6fe4f86947fc112f8d34aa3
+

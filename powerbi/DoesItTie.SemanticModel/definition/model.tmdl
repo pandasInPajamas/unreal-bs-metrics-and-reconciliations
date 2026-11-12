@@ -29,6 +29,9 @@ ref table fact_correcting_entry
 ref table fact_walk_line
 ref table bridge_recon_month_root_cause
 ref table bridge_root_cause_check
+ref table _Measures
+ref table MRR/ARR
+ref table 'Bridge Steps'
 
 ref cultureInfo en-US
 

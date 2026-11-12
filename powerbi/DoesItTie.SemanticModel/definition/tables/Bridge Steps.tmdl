@@ -1,0 +1,35 @@
+table 'Bridge Steps'
+	lineageTag: c2d24799-4699-459d-9c85-b3bfadeee59e
+
+	column Step
+		lineageTag: 02ac9606-7807-4104-a64b-f50b213510d7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Step]
+		sortByColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		formatString: 0
+		lineageTag: d884f519-51dc-406d-a8bb-4efe9d1964d3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Bridge Steps' = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "Step", STRING, "Order", INTEGER,
+				    {
+				        { "New", 1 }, { "Expansion", 2 }, { "Reactivation", 3 },
+				        { "Contraction", 4 }, { "Churn", 5 }, { "FX", 6 }
+				    }
+				)
+
+	annotation PBI_Id = ae8b6897f28f49979c12590af8615214
+

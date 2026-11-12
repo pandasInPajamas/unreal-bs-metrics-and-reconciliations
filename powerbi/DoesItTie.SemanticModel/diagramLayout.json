@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
-        "y": 0
+        "x": 492,
+        "y": 534
       },
       "nodes": [
         {
           "location": {
             "x": 351.5853626353869,
-            "y": 1481.6726774532096
+            "y": 2124.9017765413537
           },
           "nodeIndex": "bridge_recon_month_root_cause",
           "nodeLineageTag": "47b0bf48-1a10-4a0d-b44c-4b2740b75d36",
@@ -24,7 +24,7 @@
         {
           "location": {
             "x": 751.87850973577315,
-            "y": 1538.6541286980823
+            "y": 2181.8832277862266
           },
           "nodeIndex": "bridge_root_cause_check",
           "nodeLineageTag": "56f13fcd-6873-455f-8477-2ceac395221c",
@@ -37,7 +37,7 @@
         {
           "location": {
             "x": 1832.0108450051162,
-            "y": 1202.2686094247492
+            "y": 1845.4977085128933
           },
           "nodeIndex": "dim_customer",
           "nodeLineageTag": "a4af951d-a6e4-4a1d-bc0f-ca54d13594ce",
@@ -50,7 +50,7 @@
         {
           "location": {
             "x": 1296.1957580332655,
-            "y": 270.83330487921853
+            "y": 914.06240396736268
           },
           "nodeIndex": "dim_date",
           "nodeLineageTag": "572571cd-7652-4d6e-b572-5427977c3fdb",
@@ -63,7 +63,7 @@
         {
           "location": {
             "x": 1100.3436460813195,
-            "y": 1263.6666097584368
+            "y": 1906.8957088465811
           },
           "nodeIndex": "dim_gl_account",
           "nodeLineageTag": "0a9fae01-27b3-4afe-9a13-fb69860a0372",
@@ -76,7 +76,7 @@
         {
           "location": {
             "x": 137.25037633704505,
-            "y": 1164.6154340152739
+            "y": 1807.8445331034179
           },
           "nodeIndex": "dim_recon_check",
           "nodeLineageTag": "c859272e-8394-42d9-acdf-2086da66cbad",
@@ -89,7 +89,7 @@
         {
           "location": {
             "x": 666.01748917766849,
-            "y": 1152.6556311407035
+            "y": 1795.8847302288475
           },
           "nodeIndex": "dim_root_cause",
           "nodeLineageTag": "a88bcc14-760a-40f5-9acb-8ab4f52a1d55",
@@ -102,7 +102,7 @@
         {
           "location": {
             "x": 1410.5623777517758,
-            "y": 1117.6806092218617
+            "y": 1760.9097083100057
           },
           "nodeIndex": "dim_walk_step",
           "nodeLineageTag": "3e655fd8-30f8-400a-b515-8a117a745fba",
@@ -115,7 +115,7 @@
         {
           "location": {
             "x": 2154.1957580332651,
-            "y": 762.88819154105124
+            "y": 1406.1172906291954
           },
           "nodeIndex": "fact_arr_movement",
           "nodeLineageTag": "8db6b6ae-1166-4e40-ab64-ee1bf33dc5a0",
@@ -128,7 +128,7 @@
         {
           "location": {
             "x": 1833.750735730956,
-            "y": 739.50505498073733
+            "y": 1382.7341540688815
           },
           "nodeIndex": "fact_arr_snapshot",
           "nodeLineageTag": "610c4b7c-9085-4020-baa5-802c1eb8e2f7",
@@ -141,7 +141,7 @@
         {
           "location": {
             "x": 952.38846566927668,
-            "y": 770.19768791358729
+            "y": 1413.4267870017313
           },
           "nodeIndex": "fact_correcting_entry",
           "nodeLineageTag": "628592b3-9e64-48d2-8eed-101c17fa5c24",
@@ -154,7 +154,7 @@
         {
           "location": {
             "x": 1539.5072828856405,
-            "y": 766.7065882481869
+            "y": 1409.9356873363311
           },
           "nodeIndex": "fact_gl_line",
           "nodeLineageTag": "baed683d-a604-4d9c-ab92-7d2c81ff37d2",
@@ -167,7 +167,7 @@
         {
           "location": {
             "x": 98,
-            "y": 763.95254536889161
+            "y": 1407.1816444570356
           },
           "nodeIndex": "fact_recon_daily",
           "nodeLineageTag": "14d8714c-e08f-4e01-a8cd-2db5bec66823",
@@ -180,7 +180,7 @@
         {
           "location": {
             "x": 642.2354135683554,
-            "y": 745.11067393131589
+            "y": 1388.33977301946
           },
           "nodeIndex": "fact_recon_exception",
           "nodeLineageTag": "60b16f2b-26e8-464a-9b8d-d61ecb5d5217",
@@ -193,7 +193,7 @@
         {
           "location": {
             "x": 358.88859018154096,
-            "y": 760
+            "y": 1403.229099088144
           },
           "nodeIndex": "fact_recon_monthly",
           "nodeLineageTag": "8167e8e2-eceb-4df0-be32-468844909241",
@@ -206,7 +206,7 @@
         {
           "location": {
             "x": 1244.7658343107505,
-            "y": 769.7898117857352
+            "y": 1413.0189108738793
           },
           "nodeIndex": "fact_walk_line",
           "nodeLineageTag": "f0b64ff0-b6c9-48e7-864a-61760b5c1a1c",
@@ -215,6 +215,43 @@
             "width": 234
           },
           "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 2340.1957580332651,
+            "y": 1241.1395109975761
+          },
+          "nodeIndex": "_Measures",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2526.1957580332651,
+            "y": 1129.7228585579667
+          },
+          "nodeIndex": "MRR/ARR",
+          "nodeLineageTag": "4185a08f-2c11-458d-ac96-2bcde6af81cd",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2712.1957580332651,
+            "y": 902.59787989855272
+          },
+          "nodeIndex": "Bridge Steps",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

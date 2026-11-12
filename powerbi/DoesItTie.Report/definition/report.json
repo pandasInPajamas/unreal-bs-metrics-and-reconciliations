@@ -24,6 +24,26 @@
           }
         }
       }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
     ]
   },
   "resourcePackages": [
@@ -35,6 +55,32 @@
           "name": "Fluent2-CY26SU10",
           "path": "BaseThemes/Fluent2-CY26SU10.json",
           "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "background34012130432209875.svg",
+          "path": "background34012130432209875.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Metrics_background49855307631476986.png",
+          "path": "Metrics_background49855307631476986.png",
+          "type": "Image"
+        },
+        {
+          "name": "slogan3223012392668744.svg",
+          "path": "slogan3223012392668744.svg",
+          "type": "Image"
+        },
+        {
+          "name": "unreal_wordmark8525200907864343.svg",
+          "path": "unreal_wordmark8525200907864343.svg",
+          "type": "Image"
         }
       ]
     }

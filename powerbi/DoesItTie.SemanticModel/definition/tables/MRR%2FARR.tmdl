@@ -1,0 +1,48 @@
+table MRR/ARR
+	lineageTag: 4185a08f-2c11-458d-ac96-2bcde6af81cd
+
+	column MRR/ARR
+		lineageTag: 54ddd159-0ee6-4b89-8f7a-c62db3bc8cab
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'MRR/ARR Order'
+
+		relatedColumnDetails
+			groupByColumn: 'MRR/ARR Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRR/ARR Fields'
+		isHidden
+		lineageTag: bbbe610c-5af5-4afa-bbec-36ffedd38783
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'MRR/ARR Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MRR/ARR Order'
+		isHidden
+		formatString: 0
+		lineageTag: 1ea62606-1ae1-4a78-95b1-9a6e8b19fcf9
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MRR/ARR = calculated
+		mode: import
+		source =
+				{
+				    ("MRR", NAMEOF('_Measures'[MRR]), 0),
+				    ("ARR", NAMEOF('_Measures'[ARR]), 1)
+				}
+
+	annotation PBI_Id = 1a8eb8c4ecc7454c80c57822c279ad65
+

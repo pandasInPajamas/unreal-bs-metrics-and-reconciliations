@@ -1,0 +1,82 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "67105b89ca33c5350722",
+  "displayName": "Metrics",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Metrics background.png'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "Metrics_background49855307631476986.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "ee211739525b9a9e1c95",
+      "target": "e70d89550a036d518b49",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e70d89550a036d518b49",
+      "target": "a5220a93b08c5ac39024",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e70d89550a036d518b49",
+      "target": "2e9e58c9358b3c5e9c44",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e70d89550a036d518b49",
+      "target": "b589ec80a7d6d0c1e22c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "e70d89550a036d518b49",
+      "target": "ab8cc02296832b089dd0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ee211739525b9a9e1c95",
+      "target": "8b528511a7d5dd61a9e4",
+      "type": "NoFilter"
+    }
+  ]
+}
