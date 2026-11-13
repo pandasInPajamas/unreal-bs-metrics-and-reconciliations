@@ -12,12 +12,14 @@ Unreal BS operates across 3 markets, and this dashboard offers the KPIs that mon
 
 ## Demonstrates
 
-- **Data modeling:** Star schema design, semantic modeling, data transformation, and relationship management.
-- **Advanced DAX:** Semi-additive measures, field parameters, rolling ratios, and SVG measures.
-- **Power BI development:** PBIP project structure, TMDL, and version control in Git.
-- **Reconciliation logic:** Connecting SaaS operational metrics to financial reporting and reconciliation.
-- **SaaS analytics:** Subscription health KPIs, customer acquisition and churn, recurring revenue, and financial performance.
-- **Information design:** Dashboard layout, visual hierarchy, consistent color system, and KPI presentation.
+- **Dimensional modeling:** Star schema design, defined fact grain, shared dimensions, bridge tables, and relationship management.
+- **Advanced DAX:** Semi-additive measures, field parameters, rolling ratios, SVG sparklines, dynamic MRR/ARR selection, and context-aware calculations.
+- **Power BI development:** PBIP project structure, TMDL semantic model and report definitions, and version control in Git.
+- **Financial data engineering:** Multi-currency subscription data, recurring revenue snapshots, customer movements, general ledger transactions, and reconciliation datasets.
+- **Reconciliation and validation:** Financial reconciliation logic, exception tracking, root-cause analysis, correcting entries, and documented test expectations.
+- **SaaS analytics:** MRR, ARR, customer acquisition and churn, Quick Ratio, Logo Quick Ratio, and revenue movement analysis.
+- **Power Query:** Reusable M functions, parameterized CSV ingestion from GitHub, and data type transformations.
+- **Information design:** Custom graphics, dashboard layout, visual hierarchy, semantic color system, and KPI presentation.
 
 ## Progress & Considerations
 
